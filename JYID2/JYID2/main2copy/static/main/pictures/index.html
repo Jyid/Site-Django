@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#refresh-captcha').click(function (e) {
+                e.preventDefault();
+                $.get('/captcha/refresh/', function (data) {
+                    $('#captcha').attr('src', data);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <img src="{{ image_url }}" alt="Captcha" id="captcha">
+        <a href="#" id="refresh-captcha">Refresh</a>
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

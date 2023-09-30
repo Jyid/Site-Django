@@ -1,0 +1,32 @@
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid #111;
+    background-color: #585858;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(0,87,199)), color-stop(100%, rgb(66,133,255))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(top, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* FF3.6+ */
+    background: -ms-linear-gradient(top, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* IE10+ */
+    background: -o-linear-gradient(top,rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* W3C */
+}
+
+.body{
+    text-align: center;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: inherit !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(230, 230, 230, 0.1);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(65, 105, 225)), color-stop(100%, rgba(65, 105, 225))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* FF3.6+ */
+    background: -ms-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* IE10+ */
+    background: -o-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* W3C */
+}
+
+
+select:hover {
+	background-color: blue; /* Здесь вы можете задать желаемый цвет при наведении */
+}

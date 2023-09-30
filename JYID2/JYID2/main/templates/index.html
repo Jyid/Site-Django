@@ -1,0 +1,813 @@
+{% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TimPlate.ru | Вывод информации</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/static/main/pictures/favicon.ico">
+    <meta name="theme-color" content="#1976d2">
+    <link rel="stylesheet" href="{% static 'vivod\css\main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css" />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+    <link rel="stylesheet" href="{% static 'vivod/css/vivcs.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="JYID2\main\static\main\pictures\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/main/pictures//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/main/pictures//favicon-16x16.png">
+    <link rel="manifest" href="/static/main/pictures//site.webmanifest">
+    <link rel="mask-icon" href="/static/main/pictures//safari-pinned-tab.svg" color="#5bbad5">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        body{
+        background-color: #F5FFFA;
+    </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <link rel="stylesheet" href="{% static 'main/css/new-prism.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/mdb.min.css' %}">
+    <style>
+        .hr1 {
+            color: white; /* Цвет текста */
+        }
+        .hr1:hover {
+            color: #E0FFFF; /* Цвет текста */
+        }
+        .modal-backdrop {
+           background-color: rgba(130,130,130,0.4);
+        }
+
+        .modal-sm {
+            --mdb-modal-width:650px
+        }
+        .modal-header {
+            background-color: #3872cb;
+            color: white;
+        }
+        .form-outline .form-control ~ .form-label {
+        overflow: visible
+        }
+    </style>
+</head>
+<body>
+    <style>
+        @font-face {
+            font-family: "GeorgiaRegular";
+            src: url("vivod/font/fonts/GeorgiaRegular/GeorgiaRegular.eot");
+            src: url("vivod/font/fonts/GeorgiaRegular/GeorgiaRegular.eot?#iefix")format("embedded-opentype"),
+            url("vivod/font/fonts/GeorgiaRegular/GeorgiaRegular.woff") format("woff"),
+            url("vivod/font/fonts/GeorgiaRegular/GeorgiaRegular.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 400;
+        }
+    </style>
+    <style>
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            color: inherit !important;
+            border: 1px solid #1E90FF;
+            background-color: #1E90FF;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(0,87,199)), color-stop(100%, rgb(66,133,255))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* Chrome10+,Safari5.1+ */
+            background: -moz-linear-gradient(top, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* FF3.6+ */
+            background: -ms-linear-gradient(top, rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* IE10+ */
+            background: -o-linear-gradient(top,rgb(0,87,199) 0%, rgb(66,133,255) 100%); /* Opera 11.10+ */
+            background: linear-gradient(to bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%); /* W3C */
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            color: white !important;
+            border: 1px solid ;
+            background-color: rgba(230, 230, 230, 0.1);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(65, 105, 225)), color-stop(100%, rgba(65, 105, 225))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* Chrome10+,Safari5.1+ */
+            background: -moz-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* FF3.6+ */
+            background: -ms-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* IE10+ */
+            background: -o-linear-gradient(top, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* Opera 11.10+ */
+            background: linear-gradient(to bottom, rgb(65, 105, 225) 0%, rgb(65, 105, 225) 100%); /* W3C */
+
+        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th.dtr-control:before {
+         content:"▼";
+         background-color:blue
+        }
+        table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
+             top:50%;
+             left:5px;
+             height:1em;
+             width:1em;
+             margin-top:-9px;
+             display:block;
+             position:absolute;
+             color:white;
+             border:.15em solid white;
+             border-radius:1em;
+             box-shadow:0 0 .2em #444;
+             box-sizing:content-box;
+             text-align:center;
+             text-indent:0 !important;
+             font-family:"Courier New",Courier,monospace;
+             line-height:1em;
+             content:"►";
+             background-color:blue
+        }
+        }
+        .dataTables_wrapper .dataTables_length select {
+            border: 1px solid #1E90FF;
+        }
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #1E90FF;
+        }
+    </style>
+    <script>
+        webix.ui({
+            view:"datatable",
+            css:"my_style"
+        });
+    </script>
+    <script type="text/javascript" language="JavaScript">
+        function sendit() {
+            person = { firstname: '', lastname: '', email: '', age: '', state: []}
+            let arr = document.querySelectorAll(".example");
+            let age = document.getElementsByClassName('form-control select-input placeholder-active active');
+            let rest = document.getElementsByClassName('exmp');
+            let valid = document.getElementById('rabota0');
+            let valid1 = document.getElementById('rabota1');
+            let alertJSs = document.getElementById('alrts');
+            let alertJSd = document.getElementById('alrts1');
+            let captcha = document.getElementById('captcha');
+            person.firstname = arr[0].value;
+            person.lastname = arr[1].value;
+            person.email = arr[2].value;
+            person.captcha = arr[3].value;
+            person.age = age[0].value;
+            let tpcheck = document.querySelectorAll('.clscb');
+            const RussiaValid = /^[<а-яА-ЯёЁ></а-яА-ЯёЁ>]+$/;
+            const EngValid = /^[A-Za-z]+$/;
+            const EmailValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            const numvalid = /^[\d.,:]*$/;
+            const numv2 = /[^0-9]/;
+            var count = 0;
+            flet = arr[0].value;
+            flet1 = arr[1].value;
+            if (arr[0].value === "") {
+                valid.innerHTML = 'Введите фамилию';
+                rest[0].style.visibility = "visible";
+                rest[0].classList.add('text-danger');
+                count+=1;
+            } else{
+                rest[0].style.visibility = "hidden";
+                rest[0].classList.remove('text-danger');
+                rest[0].classList.add('text-success');
+                count=0;
+            }
+            for (var i = 0; i < flet.length; i++){
+                if (!EngValid.test(arr[0].value) && !numv2.test(flet[i])) {
+                    valid.innerHTML = 'Ввод цифр недоступен';
+                    rest[0].style.visibility = "visible";
+                    rest[0].classList.add('text-danger');
+                    count+=1;
+                } else if (!RussiaValid.test(arr[0].value) && !numvalid.test(arr[0].value)) {
+                    valid.innerHTML = 'Недопустим ввод цифр и англиских букв';
+                    rest[0].style.visibility = "visible";
+                    rest[0].classList.add('text-danger');
+                    count+=1;
+                } else{
+                    rest[0].style.visibility = "hidden";
+                    rest[0].classList.remove('text-danger');
+                    rest[0].classList.add('text-success');
+                    count=0;
+                }
+            }
+            if (arr[1].value === "") {
+                valid1.innerHTML = 'Введите фамилию';
+                rest[1].style.visibility = "visible";
+                rest[1].classList.add('text-danger');
+                count+=1
+            } else{
+                rest[1].style.visibility = "hidden";
+                rest[1].classList.remove('text-danger');
+                rest[1].classList.add('text-success');
+                count=0;
+            }
+            for (var i = 0; i < flet1.length; i++){
+                if (!EngValid.test(arr[1].value) && !numv2.test(flet1[i])) {
+                    valid1.innerHTML = 'Ввод цифр недоступен';
+                    rest[1].style.visibility = "visible";
+                    rest[1].classList.add('text-danger');
+                    count+=1;
+                } else if (!RussiaValid.test(arr[1].value) && !numvalid.test(arr[1].value)) {
+                    valid1.innerHTML = 'Недопустим ввод цифр и англиских букв';
+                    rest[1].style.visibility = "visible";
+                    rest[1].classList.add('text-danger');
+                    count+=1;
+                } else{
+                    rest[1].style.visibility = "hidden";
+                    rest[1].classList.remove('text-danger');
+                    rest[1].classList.add('text-success');
+                    count=0;
+                }
+            }
+            if (!EmailValid.test(arr[2].value)) {
+                rest[2].style.visibility = "visible";
+                rest[2].classList.add('text-danger');
+                count+=1;
+            } else{
+                rest[2].style.visibility = "hidden";
+                rest[2].classList.remove('text-danger');
+                rest[2].classList.add('text-success');
+                count=0;
+            }
+            if (age[0].value === 'Возраст') {
+                rest[3].style.visibility = "visible";
+                rest[3].classList.add('text-danger');
+                count+=1;
+            }else{
+                rest[3].style.visibility = "hidden";
+                rest[3].classList.remove('text-danger');
+                rest[3].classList.add('text-success');
+                count=0;
+            }
+            if (arr[3].value === "") {
+                rest[4].style.visibility = "visible";
+                rest[4].classList.add('text-danger');
+                count+=1;
+            }else{
+                rest[4].style.visibility = "hidden";
+                rest[4].classList.remove('text-danger');
+                rest[4].classList.add('text-success');
+                count=0;
+            }
+            if(arr[0].value != '' && arr[1].value != '' && arr[2].value != '' && age.length != 0){
+                for (var i = 0; i < tpcheck.length; i++) {
+                    if(tpcheck[i].checked == true) {
+                            person.state.push(tpcheck[i].value);
+                    }
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "setget", true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.status == 500 || xhr.status == 502) {
+                        alertJSd.style = true;
+                        setTimeout(function(){
+                        alertJSd.style = 'visibility: hidden;'
+                        }, 5000);
+                    }
+				};
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        alertJSs.style = true;
+                        setTimeout(function(){
+                        alertJSs.style = 'visibility: hidden;'
+                    }, 5000);
+                    }
+                };
+                if(count <= 0) {
+                    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                    var csrftoken = document.cookie.match(/csrftoken=(.+?)(;|$)/)[1];
+                    xhr.setRequestHeader('X-CSRFToken', csrftoken);
+                    xhr.send(JSON.stringify(person));
+                    arr[0].value = '';
+                    arr[1].value = '';
+                    arr[2].value = '';
+                    age[0].value = 'Возраст';
+                    arr[3].value = '';
+                    winc = document.getElementsByClassName('btn-close');
+                    winc[2].click();
+                    window.onload = function() {
+                        loadCaptcha();
+                    }
+                    loadCaptcha();
+                    for (var i = 0; i < t1.length; i++){
+                        if(tpcheck[i].checked == true) {
+                            tpcheck[i].checked = false;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        function loadSubjects() {
+            fetch('/get_subjects')
+            .then(response => response.json())
+            .then(data => {
+                var subjectsDiv = document.getElementById('subjects');
+                for (var i = 0; i < data.length; i++) {
+                    var subject = data[i];
+                    var checkbox = document.createElement('input');
+                    checkbox.className = 'subject-container';
+                    checkbox.type = 'checkbox';
+                    checkbox.id = 'idcheck';
+                    checkbox.name = subject;
+                    checkbox.value = subject;
+                    checkbox.classList.add("checked");
+                    checkbox.classList.add("form-check-input");
+                    checkbox.classList.add("clscb");
+                    var label = document.createElement('label');
+                    label.htmlFor = subject;
+                    label.appendChild(document.createTextNode(subject));
+                    var subjectDiv = document.createElement('div');
+                    subjectDiv.classList.add("checkbox-container");
+                    subjectDiv.classList.add("col-xs-12");
+                    subjectDiv.classList.add("col-sm-6");
+                    subjectDiv.appendChild(checkbox);
+                    subjectDiv.appendChild(label);
+                    subjectsDiv.appendChild(subjectDiv);
+                }
+            });
+        }
+    </script>
+    <script>
+        window.onload = function() {
+            loadSubjects();
+            loadCaptcha();
+        }
+    </script>
+     <script>
+         function refresh() {
+                 var id = this.('id');
+                 var name = document.getElementById('name').value;
+                 var last_name = document.getElementById('last_name').value;
+                 var email = document.getElementById('email').value;
+                 var age = document.getElementById('age').value;
+                 var data = {
+                     'id': id,
+                     'name': name,
+                     'last_name': last_name,
+                     'email': email,
+                     'age': age
+                 };
+                 var xhr = new XMLHttpRequest();
+                 xhr.open('POST', 'update', true);
+                 xhr.setRequestHeader('Content-Type', 'application/json');
+                 xhr.setRequestHeader('X-CSRFToken', csrftoken);
+                 xhr.send(JSON.stringify(data));
+         }
+ </script>
+
+<!-- Success Alert -->
+<div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="row">
+            <div id = 'alrts1' class="alert alert-danger alert-dismissible col-md-4 " style="visibility: hidden;">
+                <i class="bi-check-circle-fill"></i>
+                <strong class="mx-2">Error!</strong> Ваше сообщение не было успешно отправлено.
+                <button type="button" class="btn-close cls" data-bs-dismiss="alert"></button>
+            </div>
+            <div id = 'alrts' class="alert alert-success alert-dismissible col-md-4 offset-md-4" style="visibility: hidden;">
+                <i class="bi-check-circle-fill"></i>
+                <strong class="mx-2">Success!</strong> Ваше сообщение было успешно отправлено.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+        <div style="max-width: 55rem; top: -40px;" class="card bg-light mb-3 shadow p-3 mb-5 bg-body rounded my-5">
+            <div class="card-header text-white bg-primary mb-3" style="padding-left: 21px;margin-left: -16px;margin-right: -16px;margin-top: -14px;border-left-style: solid;border-left-width: 0px; ">
+                <div class="logo">
+                    <p class="box-title mb-3" style="margin-top: 15px;">
+                    <h4><em><strong> <svg class="logo" xmlns="http://www.w3.org/2000/svg" height="32" fill="#ffffff" viewBox="0 -1 33 38"><path d="M16.098 32v-6.196c6.615 0 11.7-6.501 9.177-13.419a9.227 9.227 0 0 0-5.545-5.513C12.771 4.363 6.233 9.457 6.233 15.996H0C0 5.542 10.171-2.631 21.183.79c4.818 1.483 8.642 5.322 10.172 10.112C34.796 21.888 26.613 32 16.098 32Z"></path><path d="M16.097 25.842H9.902v-6.159h6.195v6.159Zm-6.194 4.751h-4.78v-4.751h4.78v4.751Zm-4.779-4.751H1.109v-3.954h3.977v3.954h.038Z"></path></svg><span style="color: #ffe1bb;">Tim</span>Plate.ru</strong></em></h4>
+                </div>
+            </div>
+            <div class="card-body" style="margin-top: -15px;">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">
+                    Добавить
+                </button>
+                <!-- Modal -->
+                <div
+                        class="modal fade"
+                        id="staticBackdrop"
+                        data-mdb-backdrop="static"
+                        data-mdb-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="staticBackdropLabel"
+                        aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-sm">
+                        <section class="vh-100" id="vh-100">
+                            <div class="container-fluid h-custom">
+                                <div class="row d-flex justify-content-center align-items-center h-100">
+                                    <div class="modal-content" style="padding-left: 25px;padding-right: 25px;">
+                                        <div class="modal-header bg-primary" style="padding-right: 16px;margin-right: -25px;margin-left: -25px;">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">Добавить</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" style="top: -25px;">
+                                        </div>
+                                        <em><p style="margin-top: -25px;">Ввод основной информации</p></em>
+                                        <div class="tab-pane fade active show" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                                            <div class="row mb-3" style="margin-right: -60px;">
+                                                <div class="row col-xs-12 col-sm-6" style="padding-right: 0px;margin-right: -;">
+                                                    <div class="col" style="margin-right: 11px; margin-bottom: -15px;">
+                                                        <div class="form-outline input-group-lg">
+                                                            <input type="text" autocomplete="off" id="del0" name="name" class="form-control example input-ru" required="">
+                                                            <label class="form-label example3 valid" value="Имя" for="del0" style="margin-left: -5px; margin-left: 0px;">Имя</label>
+                                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 30.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                            <small id="rabota0">Введите имя</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row col-xs-12 col-sm-6">
+                                                    <div class="col" style="margin-bottom: -15px;">
+                                                        <div class="form-outline input-group-lg">
+                                                            <i id="lastname" class="fas fa-check trailing text-success" style="display: none;"></i>
+                                                            <input type="text" autocomplete="off" name="last_name" id="del1" class="form-control example input-ru" required="">
+                                                            <label class="form-label example3" for="del1">Фамилия</label>
+                                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                            <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                            <small id="rabota1">Введите фамилию</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col" style="margin-bottom: -20px;">
+                                        <div class="form-outline input-group-lg">
+                                            <input type="email" autocomplete="off" id="del3" class="form-control example email-valid" required="">
+                                            <label class="form-label example3" for="del3" style="margin-left: 0px;">E-mail</label>
+                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 39.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                                        <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                            <small id="rabota2">Введите email</small>
+                                        </div>
+                                    </div>
+                                    <div class="col" style="margin-top: 20px;">
+                                        <div id="age" class="select-wrapper">
+                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div>
+                                                <select class="select select-initialized">
+                                                    <option selected=""  value="Возраст">Возраст</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                    <option value="29">29</option>
+                                                    <option value="30">30</option>
+                                                    <option value="31">31</option>
+                                                    <option value="32">32</option>
+                                                    <option value="33">33</option>
+                                                    <option value="34">34</option>
+                                                    <option value="35">35</option>
+                                                    <option value="36">36</option>
+                                                    <option value="37">37</option>
+                                                    <option value="38">38</option>
+                                                    <option value="39">39</option>
+                                                    <option value="40">40</option>
+                                                    <option value="41">41</option>
+                                                    <option value="42">42</option>
+                                                    <option value="43">44</option>
+                                                    <option value="45">45</option>
+                                                    <option value="46">46</option>
+                                                    <option value="47">47</option>
+                                                    <option value="48">48</option>
+                                                </select></div>
+                                            <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                <small>Выберите возраста</small>
+                                            </div>
+                                            <em><p style="margin-top: -5px;">Ввод дополнительных предметов</p></em>
+                                        </div>
+                                        <div class="row" id="subjects">
+                                        </div>
+                                        <br>
+                                        <div class="row mb-4">
+                                            <div class="row mb-4" style="margin-top: -20px;">
+                                                <div class="col-lg-2 col-md-2 col-sm-12" style="margin-right: 30px;">
+                                                    <div class="form-outline mt-1" style="width: 7rem; margin-bottom: -15px;">
+                                                        <div class="form-outline input-group-lg">
+                                                            <input type="text" autocomplete="off" id="del0" name="name" class="form-control example input-ru" required="">
+                                                            <label class="form-label example3 valid" value="Имя" for="del0" style="margin-left: -5px; margin-left: 0px;">Код</label>
+                                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 30.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                            <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                                <small id="captchaV">Введите капчу</small>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                                    <div style="margin-top: 10px;"><a class="captcha h3" id="captcha" href="#" data-mdb-toggle="tooltip" title="Обновить код" onclick="loadCaptcha();"></a></div>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                function loadCaptcha() {
+                                                fetch('/get_mycaptca')
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        var captcha = data;
+                                                        var pepa = document.getElementById('captcha');
+                                                        pepa.innerText = captcha;
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="margin-top: -35px;">
+                                        <button type="button" class="btn btn-outline-primary" data-mdb-dismiss="modal" style="">
+                                            Отменить
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" onclick="sendit()">ОТПРАВИТЬ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+                <!-- Modal -->
+                <div
+                        class="modal fade"
+                        id="editModal"
+                        data-mdb-backdrop="static"
+                        data-mdb-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="staticBackdropLabel"
+                        aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-sm">
+                        <section class="vh-100" id="vh-100">
+                            <div class="container-fluid h-custom">
+                                <div class="row d-flex justify-content-center align-items-center h-100">
+                                    <div class="modal-content" style="padding-left: 25px;padding-right: 25px;">
+                                        <div class="modal-header bg-primary" style="padding-right: 16px;margin-right: -25px;margin-left: -25px;">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">Редактировать</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" style="top: -25px;">
+                                        </div>
+                                        <em><p style="margin-top: -25px;">Редактирование основной информации</p></em>
+                                        <div class="tab-pane fade active show" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                                            <div class="row mb-3" style="margin-right: -36px;">
+                                                <div class="row col-xs-12 col-sm-6" style="padding-right: 0px;margin-right: -;">
+                                                    <div class="col" style="margin-right: 11px; margin-bottom: -15px;">
+                                                        <div class="form-outline input-group-lg">
+                                                            <input type="text" autocomplete="off" id="name" name="name" class="form-control example input-ru name" required="">
+                                                            <label class="form-label example3 valid" value="Имя" for="del0" style="margin-left: -5px; margin-left: 0px;">Имя</label>
+                                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 30.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                            <small id="rabota0">Введите имя</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row col-xs-12 col-sm-6">
+                                                    <div class="col" style="margin-bottom: -15px;">
+                                                        <div class="form-outline input-group-lg">
+                                                            <i id="lastname" class="fas fa-check trailing text-success" style="display: none;"></i>
+                                                            <input type="text" autocomplete="off" name="last_name" id="last_name" class="form-control example input-ru last_name" required="">
+                                                            <label class="form-label example3" for="del1">Фамилия</label>
+                                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                            <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                            <small id="rabota1">Введите фамилию</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col" style="margin-bottom: -20px;">
+                                        <div class="form-outline input-group-lg">
+                                            <input type="email" autocomplete="off" id="email" class="form-control example email-valid email" required="">
+                                            <label class="form-label example3" for="del3" style="margin-left: 0px;">E-mail</label>
+                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 39.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                                        <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                            <small id="rabota2">Введите email</small>
+                                        </div>
+                                    </div>
+                                    <div class="col" style="margin-top: 20px;">
+                                        <div id="age" class="select-wrapper">
+                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div>
+                                                <select class="select select-initialized" id="age">
+                                                    <option selected=""  value="Возраст">Возраст</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                    <option value="29">29</option>
+                                                    <option value="30">30</option>
+                                                    <option value="31">31</option>
+                                                    <option value="32">32</option>
+                                                    <option value="33">33</option>
+                                                    <option value="34">34</option>
+                                                    <option value="35">35</option>
+                                                    <option value="36">36</option>
+                                                    <option value="37">37</option>
+                                                    <option value="38">38</option>
+                                                    <option value="39">39</option>
+                                                    <option value="40">40</option>
+                                                    <option value="41">41</option>
+                                                    <option value="42">42</option>
+                                                    <option value="43">44</option>
+                                                    <option value="45">45</option>
+                                                    <option value="46">46</option>
+                                                    <option value="47">47</option>
+                                                    <option value="48">48</option>
+                                                </select></div>
+                                            <div class="form-text exmp my-1" style="margin-top: -2px; margin-left: 10px; visibility: hidden;">
+                                                <small>Выберите возраста</small>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="modal-footer" style="margin-top: -35px;">
+                                        <button type="button" class="btn btn-outline-primary" data-mdb-dismiss="modal" style="">
+                                            Отменить
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" id="saveChangesBtn" onclick="refresh()">ОТПРАВИТЬ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <br>
+            <br>
+            <table id="datatable" class="display nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Почта</th>
+                    <th>Возраст</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    $(document).ready(function() {
+    var csrftoken = jQuery.cookie('csrftoken');
+    var table = $('#datatable').DataTable({
+        responsive: false,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/vivod/datatable_data/",
+            type: "GET"
+        },
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/ru.json",
+        },
+        oLanguage: {
+            url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/ru.json",
+            sInfo: "от _START_ до _END_ из _TOTAL_ ",
+            sInfoEmpty: "от _START_ до _END_ из _TOTAL_ ",
+            oPaginate: {
+                sPrevious: "<",
+                sNext: ">",
+            }
+        },
+        columns: [
+            { data: "id"  },
+            { data: "name" },
+            { data: "last_name" },
+            { data: "email" },
+            { data: "age" },
+            {
+                data: null,
+                className: "dt-center editor-delete",
+                render: function(data, type, row) {
+                    return '<button class="delete-button btn btn-light"  data-id="' + row.id + '"><i class="fa fa-trash"></i></button>';
+                },
+                orderable: false
+            },
+            {
+                data: null,
+                className: "dt-center editor-edit",
+                render: function(data, type, row) {
+                    return '<button class="edit-button btn btn-light refr" onclick="getId(this)" data-mdb-toggle="modal" data-id="' + row.id + '"><i class="fa fa-pencil"></i></button>';
+                },
+                orderable: false
+            }
+        ],
+        responsive: true,
+        columnDefs: [
+            {
+                targets: "_all",
+                className: "dt-center",
+            },
+            {
+                targets: [0],
+                width: "10%",
+            }
+        ],
+    });
+
+    // Обработчик события для кнопки удаления
+    $('#datatable').on('click', '.delete-button', function() {
+        var id = $(this).data('id');
+        // Выполните AJAX-запрос для удаления записи с CSRF-токеном
+        $.ajax({
+            url: '/main/delete/' + id + '/',
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken // Передача CSRF-токена в заголовке запроса
+            },
+            success: function(response) {
+                // Обработайте успешный ответ от сервера
+                console.log('Запись успешно удалена');
+                // Обновите DataTable, чтобы отобразить актуальные данные
+                table.ajax.reload();
+            },
+            error: function(xhr) {
+                // Обработайте ошибку при удалении записи
+                console.log('Ошибка при удалении записи');
+            }
+        });
+    });
+    $('#datatable').on('click', '.edit-button', function() {
+        var id = $(this).data('id');
+        $.ajax({
+            url: '/main/edit/' + id + '/',
+            type: 'GET',
+            success: function(response) {
+                $('#name').val(response.name);
+                $('#last_name').val(response.last_name);
+                $('#email').val(response.email);
+                $('#age').val(response.age);
+                $('#editModal').modal('show');
+            },
+            error: function(xhr) {
+                console.log('Ошибка при получении данных записи');
+            }
+        });
+    }
+)
+});
+    </script>
+    <script>
+        $('body').on('input', '.email-valid', function(){
+            this.value = this.value.replace(/[^a-zA-Z0-9\.\-_@]/g, '');
+        });
+    </script>
+    <script type="text/javascript">
+      (function () {
+        'use strict';
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            'submit',
+            function (event) {
+              event.preventDefault();
+              event.stopPropagation();
+              form.classList.add('was-validated');
+            },
+            false
+          );
+        });
+        const singleSelect = document.querySelector('#singleSelection');
+        new mdb.Select(singleSelect);
+        const singleSelectInstance = mdb.Select.getInstance(singleSelect);
+        singleSelectInstance.setValue('4');
+        const multiSelect = document.querySelector('#multiSelection');
+        const multiSelectInstance = mdb.Select.getInstance(multiSelect);
+        multiSelectInstance.setValue(['3', '4', '5']);
+        })();
+    </script>
+    <script type="text/javascript" src="{% static 'main/js/clipboard.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/mdbsnippet.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/new-prism.js' %}"></script>
+</body>
+</html>

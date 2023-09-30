@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "GeorgiaRegular";
+    src: url("main/static/main/font/GeorgiaRegular/GeorgiaRegular.eot");
+    src: url("main/static/main/font/GeorgiaRegular/GeorgiaRegular.eot?#iefix")format("embedded-opentype"),
+    url("main/static/main/font/GeorgiaRegular/GeorgiaRegular.woff") format("woff"),
+    url("main/static/main/font/GeorgiaRegular/GeorgiaRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
+
+body{
+        background-color: #F5FFFA;
+ 
